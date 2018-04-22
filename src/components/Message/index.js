@@ -9,6 +9,7 @@ class Message extends React.Component {
     return (
       <Card>
         <CardHeader
+          style={{paddingBottom: 0}}
           avatar={
             <Avatar aria-label="Jo Sprague" >
               JS
@@ -17,7 +18,7 @@ class Message extends React.Component {
           title="Jo Sprague"
           subheader="12 minutes ago"
         />
-        <CardContent>
+        <CardContent style={{padding: 16}}>
           <Typography component="p">
             Yo me presento como Mr. Johnny Cash pero yo ni cash tengo.
           </Typography>
