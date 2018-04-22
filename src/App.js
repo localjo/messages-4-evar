@@ -5,13 +5,11 @@ import Grid from 'material-ui/Grid';
 import Menu from './components/Menu';
 import Message from './components/Message';
 
-import purple from 'material-ui/colors/purple';
-import green from 'material-ui/colors/green';
+import deepPurple from 'material-ui/colors/deepPurple';
 
 const theme = createMuiTheme({
   palette: {
-    primary: green,
-    secondary: purple,
+    primary: deepPurple,
   },
 });
 
