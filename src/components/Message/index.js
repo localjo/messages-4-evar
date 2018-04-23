@@ -4,6 +4,7 @@ import Card, { CardHeader, CardContent } from 'material-ui/Card';
 import Avatar from 'material-ui/Avatar';
 import Typography from 'material-ui/Typography';
 import { defineSwipe, Draggable, Swipeable } from 'react-touch-draggable';
+import moment from 'moment-es6';
 
 const threshold = 100;
 const swipe = defineSwipe({ swipeDistance: threshold });
@@ -30,7 +31,8 @@ class Message extends React.Component {
 
   render() {
     const { left } = this.state;
-    const { author, content, id, updated } = this.props.msg;
+    const { author, content, updated } = this.props.msg;
+    const photoUrl = 'http://message-list.appspot.com'+author.photoUrl;
     return (
       <Swipeable config={swipe}>
         <Draggable
@@ -47,13 +49,13 @@ class Message extends React.Component {
                 <Card>
                   <CardHeader
                     style={{ paddingBottom: 0 }}
-                    avatar={<Avatar aria-label="Jo Sprague">JS</Avatar>}
+                    avatar={<Avatar src={photoUrl} aria-label={author.name}></Avatar>}
                     title={author.name}
-                    subheader="12 minutes ago"
+                    subheader={moment(updated).fromNow()}
                   />
                   <CardContent style={{ padding: 16 }}>
                     <Typography component="p">
-                      Yo me presento como Mr. Johnny Cash pero yo ni cash tengo.
+                      {content}
                     </Typography>
                   </CardContent>
                 </Card>
