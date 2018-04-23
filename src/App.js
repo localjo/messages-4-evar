@@ -11,7 +11,7 @@ import deepPurple from 'material-ui/colors/deepPurple';
 
 const cache = createCache();
 
-const getMessages = createResource((placeholder) => {
+const getMessages = createResource(() => {
   return new Promise(resolve => {
     fetch('http://message-list.appspot.com/messages').then((res)=>{
       res.json().then(body=>{
@@ -19,11 +19,11 @@ const getMessages = createResource((placeholder) => {
       });
     });
   });
-}, (placeholder) => placeholder);
+});
 
 class MessageList extends React.Component {
   render() {
-    const data = getMessages(cache, 'Placeholder');
+    const data = getMessages(cache);
     const { dismissMessage, filter } = this.props;
     return (
       <React.Fragment>
