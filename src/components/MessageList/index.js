@@ -7,14 +7,12 @@ import Message from '../Message';
 
 const cache = createCache();
 
-const getMessages = createResource(() => {
-  return new Promise(resolve => {
-    fetch('http://message-list.appspot.com/messages').then((res)=>{
-      res.json().then(body=>{
-        resolve(body);
-      });
-    });
-  });
+const getMessages = createResource(async function (pageToken) {
+  console.log('pt', pageToken);
+  const response = await fetch(
+    `http://message-list.appspot.com/messages${pageToken?'?pageToken='+pageToken:''}`,
+  );
+  return await response.json();
 });
 
 class MessageList extends React.Component {
