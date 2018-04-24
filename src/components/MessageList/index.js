@@ -1,48 +1,49 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { withTheme } from 'material-ui/styles';
-import { createResource, createCache } from 'simple-cache-provider';
 import Grid from 'material-ui/Grid';
+import Button from 'material-ui/Button';
 import Message from '../Message';
 
-const cache = createCache();
-
-const getMessages = createResource(async function (pageToken) {
-  console.log('pt', pageToken);
+const getMessages = async function (pageToken) {
   const response = await fetch(
     `http://message-list.appspot.com/messages${pageToken?'?pageToken='+pageToken:''}`,
   );
   return await response.json();
-});
+};
 
 class MessageList extends React.Component {
-  state = {
-    showHello: false,
-    loadingIndicator: false,
-    dismissed: [],
-  };
+  constructor(props){
+    super(props);
+    this.state = {
+      count: 0,
+      pageToken: null,
+      messages: [],
+      dismissed: [],
+    };
+  }
   
   componentDidMount() {
-    this.requestData();
-  };
-  
-  requestData = () => {
-    this.setState({loadingIndicator: true});
-    ReactDOM.unstable_deferredUpdates(() => {
-      this.setState({loadData: true});
+    getMessages().then(data=>{
+      this.setState(Object.assign({}, this.state, data));
     });
   };
   
   dismissMessage(id){
     this.setState({dismissed: [...this.state.dismissed, id]})
   };
+  
+  getMoreMessages() {
+    const { pageToken } = this.state;
+    getMessages(pageToken).then(data=>{
+      this.setState(Object.assign({}, this.state, data));
+    });
+  };
 
   render() {
-    const data = getMessages(cache);
-    const { dismissed } = this.state;
+    const { dismissed, messages, pageToken } = this.state;
     return (
       <React.Fragment>
-        {data.messages.filter(msg=>{
+        {messages.filter(msg=>{
           return !dismissed.includes(msg.id);
         }).map(msg=>{
           return (
@@ -51,6 +52,10 @@ class MessageList extends React.Component {
             </Grid>
           );
         })}
+        <Button onClick={()=>{
+          console.log('get more messages', pageToken);
+          this.getMoreMessages();
+        }}>Test</Button>
       </React.Fragment>
     );
   }

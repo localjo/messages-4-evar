@@ -1,4 +1,4 @@
-import React, { Timeout } from 'react';
+import React from 'react';
 import CssBaseline from 'material-ui/CssBaseline';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
@@ -21,13 +21,7 @@ class App extends React.Component {
         <Menu />
         <div style={{ padding: 16, paddingTop: 72, overflowX: 'hidden' }}>
           <Grid container spacing={8}>
-            <Timeout ms={1000}>
-              {didTimeout => {
-                return didTimeout ? (<span>Loading...</span>) : (
-                  <MessageList />
-                );
-              }}
-            </Timeout>
+            <MessageList />
           </Grid>
         </div>
       </MuiThemeProvider>
