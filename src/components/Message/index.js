@@ -32,7 +32,7 @@ class Message extends React.Component {
   render() {
     const { left } = this.state;
     const { author, content, updated } = this.props.msg;
-    const photoUrl = 'http://message-list.appspot.com'+author.photoUrl;
+    const photoUrl = '//message-list.appspot.com'+author.photoUrl;
     return (
       <Draggable
         onDragEnd={() => this.handleDragEnd()}

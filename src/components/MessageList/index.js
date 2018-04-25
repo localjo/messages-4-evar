@@ -6,7 +6,7 @@ import Message from '../Message';
 
 const getMessages = async function(pageToken) {
   const response = await fetch(
-    `http://message-list.appspot.com/messages?limit=100${
+    `//message-list.appspot.com/messages?limit=100${
       pageToken ? '&pageToken=' + pageToken : ''
     }`
   );
