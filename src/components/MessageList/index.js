@@ -17,6 +17,7 @@ class MessageList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      isLoading: false,
       count: 0,
       pageToken: null,
       messages: [],
@@ -25,9 +26,21 @@ class MessageList extends React.Component {
   }
 
   componentDidMount() {
-    getMessages().then(res => {
-      this.setState(Object.assign({}, this.state, res));
-    });
+    this.getMoreMessages();
+    window.addEventListener('scroll', ()=>this.infiniteScroll());
+  }
+
+  infiniteScroll() {
+    if (this.state.isLoading) return;
+    const { innerHeight, scrollY } = window;
+    const { offsetHeight } = document.body;
+    const pxFromBottom = 10000;
+    const lowestVisiblePoint = innerHeight + scrollY;
+    const triggerPoint = offsetHeight - pxFromBottom;
+    const isNearBottom = lowestVisiblePoint > triggerPoint;
+    if (isNearBottom) {
+      this.getMoreMessages();
+    }
   }
 
   dismissMessage(id) {
@@ -36,8 +49,10 @@ class MessageList extends React.Component {
 
   getMoreMessages() {
     const { messages, pageToken } = this.state;
+    this.setState({ isLoading: true });
     getMessages(pageToken).then(res => {
       this.setState({
+        isLoading: false,
         pageToken: res.pageToken,
         messages: messages.concat(res.messages)
       });
@@ -45,7 +60,7 @@ class MessageList extends React.Component {
   }
 
   render() {
-    const { dismissed, messages } = this.state;
+    const { dismissed, messages, isLoading } = this.state;
     return (
       <React.Fragment>
         {messages
@@ -62,12 +77,12 @@ class MessageList extends React.Component {
               </Grid>
             );
           })}
-        <Button
-          onClick={() => {
-            this.getMoreMessages();
-          }}>
-          Get More Messages
-        </Button>
+        {isLoading ? (
+          <Button
+            fullWidth={true}
+            disabled={true}
+          >Loading messages...</Button>
+        ) : null}
       </React.Fragment>
     );
   }
