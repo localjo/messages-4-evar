@@ -15,6 +15,7 @@ class Message extends React.Component {
   }
 
   handleDrag({dx}) {
+    dx = dx > 0 ? dx : 0; // Only allow dragging to the right
     this.setState({ left: dx });
   }
 
@@ -41,7 +42,6 @@ class Message extends React.Component {
         {({ dx }) => {
           const isOverThreshold = dx > threshold;
           const opacity = isOverThreshold ? 0.5 : 1;
-          dx = dx > 0 ? dx : 0; // Only allow dragging to the right
           return (
             <div style={{ transform: `translateX(${left}px)`, opacity }}>
               <Card>
