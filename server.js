@@ -1,13 +1,15 @@
 const express = require('express');
-const basicAuth = require('express-basic-auth')
-const bodyParser = require('body-parser')
+const basicAuth = require('express-basic-auth');
+const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
-app.use(express.static(path.join(__dirname, 'build')));
+
 app.use(basicAuth({
   users: { 'admin': 'admin' },
   challenge: true
-}))
+}));
+
+app.use(express.static(path.join(__dirname, 'build')));
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
