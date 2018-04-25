@@ -6,7 +6,8 @@ const app = express();
 
 app.use(basicAuth({
   users: { 'admin': 'admin' },
-  challenge: true
+  challenge: true,
+  realm: 'basicAuth'
 }));
 
 app.use(express.static(path.join(__dirname, 'build')));
