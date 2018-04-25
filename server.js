@@ -1,10 +1,12 @@
 const express = require('express');
-const wwwhisper = require('connect-wwwhisper');
+const basicAuth = require('express-basic-auth')
 const bodyParser = require('body-parser')
 const path = require('path');
 const app = express();
 app.use(express.static(path.join(__dirname, 'build')));
-app.use(wwwhisper());
+app.use(basicAuth({
+  users: { 'admin': 'admin' }
+}))
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
