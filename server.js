@@ -5,7 +5,7 @@ const path = require('path');
 const app = express();
 
 app.use(basicAuth({
-  users: { 'admin': 'admin' },
+  users: { 'google': 'uxeexercise' },
   challenge: true,
   realm: 'basicAuth'
 }));
