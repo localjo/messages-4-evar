@@ -13,7 +13,6 @@
     "react-scripts": "1.1.4",
     "react-touch-draggable": "^0.4.3"
   },
-  "proxy": "http://localhost:8080",
   "engines": {
     "node": "9.5.0"
   },
