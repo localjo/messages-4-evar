@@ -4,12 +4,6 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
 
-app.use(basicAuth({
-  users: { 'google': 'uxeexercise' },
-  challenge: true,
-  realm: 'basicAuth'
-}));
-
 app.use(express.static(path.join(__dirname, 'build')));
 
 app.get('/', function (req, res) {
