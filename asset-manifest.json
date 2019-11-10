@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.js": "/messages-4-evar/static/js/main.4b2cad0a.chunk.js",
+    "main.js.map": "/messages-4-evar/static/js/main.4b2cad0a.chunk.js.map",
+    "runtime-main.js": "/messages-4-evar/static/js/runtime-main.d9900075.js",
+    "runtime-main.js.map": "/messages-4-evar/static/js/runtime-main.d9900075.js.map",
+    "static/js/2.58aeabc9.chunk.js": "/messages-4-evar/static/js/2.58aeabc9.chunk.js",
+    "static/js/2.58aeabc9.chunk.js.map": "/messages-4-evar/static/js/2.58aeabc9.chunk.js.map",
+    "index.html": "/messages-4-evar/index.html",
+    "precache-manifest.8d0ae6a41e0c3eca9c71a38ad5aed16e.js": "/messages-4-evar/precache-manifest.8d0ae6a41e0c3eca9c71a38ad5aed16e.js",
+    "service-worker.js": "/messages-4-evar/service-worker.js"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d9900075.js",
+    "static/js/2.58aeabc9.chunk.js",
+    "static/js/main.4b2cad0a.chunk.js"
+  ]
+}
