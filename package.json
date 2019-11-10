@@ -2,10 +2,12 @@
   "name": "messages-4-evar",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://localjo.github.io/messages-4-evar",
   "dependencies": {
     "@material-ui/icons": "^1.0.0-beta.42",
     "express": "^4.16.3",
     "express-basic-auth": "^1.2.0",
+    "gh-pages": "^2.1.1",
     "material-ui": "^1.0.0-beta.42",
     "moment-es6": "^1.0.0",
     "react": "^16.3.2",
@@ -23,7 +25,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "browserslist": {
     "production": [
